@@ -15,16 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\AuthorController;
-
+use App\Http\Controllers\BookController;
 
 Route::post('register',[UserAuthController::class,'register']);
 Route::post('login',[UserAuthController::class,'login']);
 
 
+Route::apiResource('authors',AuthorController::class);
+Route::apiResource('books',BookController::class);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/token-left', [UserAuthController::class, 'tokenExpirationTimeLeft']);
     Route::post('logout', [UserAuthController::class, 'logout']);
-    Route::apiResource('authors',AuthorController::class);
 });
   
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
