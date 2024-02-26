@@ -16,15 +16,15 @@ export default function dataAuthors(){
     };
 
     const getAuthor = async(id)=>{
-        const response = await axios.get("authors" + id);
-        author.value=response.data.data;
+        const response = await axios.get("authors/" + id);
+        author.value=response.data;
     };
 
     const storeAuthor = async(data)=>{
         try{
             await axios.post("authors",data);
             //push data pake name, lempar ke display semua data 
-            await router.push({name:"home"});
+            await router.push({name:"AuthorIndex"});
         }catch(error){
             if(error.response.status === 422){
                 errors.value = error.response.data.errors;
@@ -36,7 +36,7 @@ export default function dataAuthors(){
         try{
             await axios.put("authors/"+id,author.value);
             //push data pake name, lempar ke display semua data 
-            await router.push({name:"home"});
+            await router.push({name:"AuthorIndex"});
         }catch(error){
             if(error.response.status === 422){
                 errors.value = error.response.data.errors;

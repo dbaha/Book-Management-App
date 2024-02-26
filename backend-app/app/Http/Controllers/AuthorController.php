@@ -30,8 +30,8 @@ class AuthorController extends Controller
         if ($author) {
             return [
                 'id' => $author->id,
-                'AuthorName' => $author->name,
-                'AuthorBio' => $author->bio
+                'name' => $author->name,
+                'bio' => $author->bio
             ];
         } else {
             return response()->json(['message' => 'Author not found'], 404);
@@ -39,15 +39,22 @@ class AuthorController extends Controller
     }
     public function store(Request $request)
     {
-        $authorRequest = $request->validate([
-            'name' => 'required | min:1 | max:20 |' .Rule::unique('authors')->ignore($request->id),
-            'bio' => 'required | min:1 '
-        ]);
-        Author::create([
-            'name' => $authorRequest['name'],
-            'bio' => $authorRequest['bio'],
-        ]);
-        return response()->json('Author created');
+        
+            $authorRequest = $request->validate([
+                'name' => 'required | min:1 | max:20 |' .Rule::unique('authors')->ignore($request->id),
+                'bio' => 'required | min:1 '
+            ],[
+                'name.unique' => 'The name :input is already registered.',
+                'name.required'=>'入力が必要です。',
+                'bio.required'=>'入力が必要です。'
+            ]);
+            Author::create([
+                'name' => $authorRequest['name'],
+                'bio' => $authorRequest['bio'],
+            ]);
+            return response()->json('Author created');
+        
+       
     }
    
     public function update(Request $request){
@@ -61,6 +68,10 @@ class AuthorController extends Controller
         $authorRequest = $request->validate([
             'name' => 'required | min:1 | max:20 |' .Rule::unique('authors')->ignore($id),
             'bio' => 'required | min:1 '
+        ],[
+            'name.unique' => 'The name :input is already registered.',
+            'name.required'=>'入力が必要です。',
+            'bio.required'=>'入力が必要です。'
         ]);
         
         Author::where('id', $id)->update([

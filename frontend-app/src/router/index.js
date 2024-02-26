@@ -38,7 +38,8 @@ const router = createRouter({
     {
       path:'/author/:id/edit',
       name: 'AuthorEdit',
-      component: () => import('../views/authors/AuthorUpdate.vue')
+      component: () => import('../views/authors/AuthorUpdate.vue'),
+      props:true,
     },
   ]
 })
