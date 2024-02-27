@@ -1,0 +1,48 @@
+<script setup>
+    import { onMounted } from 'vue';
+    import { RouterLink } from 'vue-router';
+    import NavBar from '../../components/NavBar.vue';
+    import dataBooks from '@/composable/books.js'
+
+    const {books,getBooks,destroyBook}=dataBooks();
+    onMounted(()=>{
+        getBooks();
+    });
+</script>
+<template>
+    <NavBar />
+    <div class="container-md">
+        <div class="position-relative">
+            <div class="position-absolute top-0 end-0">
+                <RouterLink :to="{name: 'BookCreate'}" class="btn btn-success">New Book</RouterLink>
+            </div>
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">No</th>
+                <th scope="col">Title Book</th>
+                <th scope="col">Author Name</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Published date</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(book,index) in books" :key="book.id">
+                <th scope="row">{{index + 1}}</th>
+                <td>{{book.Title}}</td>
+                <td>{{book.AuthorName }}</td>
+                <td>{{book.Genre }}</td>
+                <td>{{book.PublishedDate }}</td>
+                <td>
+                    <div class="row">
+                    <RouterLink :to="{name: 'BookEdit', params:{id: book.id}}" class="btn btn-primary col mx-2 ">編集</RouterLink>
+                    <button class="btn btn-danger col mx-2" @click="destroyBook(book.id)"> 削除 </button>
+                    </div>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</template>

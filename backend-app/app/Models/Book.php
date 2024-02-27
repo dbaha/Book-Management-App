@@ -14,4 +14,8 @@ class Book extends Model
         'genre',
         'published_date',
     ];
+
+    public function author() {
+        return $this->belongsTo(Author::class);
+    }
 }

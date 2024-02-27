@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 
-import table from '../components/TableData.vue'
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -39,6 +37,22 @@ const router = createRouter({
       path:'/author/:id/edit',
       name: 'AuthorEdit',
       component: () => import('../views/authors/AuthorUpdate.vue'),
+      props:true,
+    },
+    {
+      path:'/book',
+      name: 'BookIndex',
+      component: () => import('../views/books/BookIndex.vue')
+    },
+    {
+      path:'/book/create',
+      name: 'BookCreate',
+      component: () => import('../views/books/BookCreate.vue')
+    },
+    {
+      path:'/book/:id/edit',
+      name: 'BookEdit',
+      component: () => import('../views/books/BookUpdate.vue'),
       props:true,
     },
   ]

@@ -22,7 +22,7 @@ onMounted(()=>getAuthor(props.id));
                 <label for="name" class="form-label">Author Name</label>
                 <input type="text" class="form-control" id="name" v-model="author.name">
             </div>
-            <div v-if="errors.name" class="mb-3"><a class="text-danger">{{ errors.name[0] }}</a></div>
+            <div v-if="errors.name" class="mb-3"><a class="text-danger">{{ errors[0] }}{{ errors.name[0] }}</a></div>
             <div class="mb-3">
                 <label for="bio" class="form-label">Bio</label>
                 <input type="text" class="form-control" id="bio" v-model="author.bio">

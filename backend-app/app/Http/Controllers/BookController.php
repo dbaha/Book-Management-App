@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Models\Book;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
     public function index(){
-        $book = Book::all();
+       // $book = Book::all();
+        $book = Book::with('author')->get();
 
         return response()->json([
             'data' => $book->map(function ($book) {
@@ -18,6 +20,7 @@ class BookController extends Controller
                     'id' => $book->id,
                     'Title' => $book->title,
                     'AuthorId' => $book->author_id,
+                    'AuthorName'=> $book->author->name,
                     'Genre' => $book->genre,
                     'PublishedDate' => $book->published_date
                 ];
@@ -25,32 +28,35 @@ class BookController extends Controller
         ]);
     }
 
-    public function show(Request $request){
-        $id=$request->route('book');
-        
-        $book = Book::find($id);
-
+    public function show(Request $request){        
+        $id = $request->route('book');
+        //$book = Book::find($id);
+        $book = Book::with('author')->find($id); 
         if ($book) {
             return [
                 'id' => $book->id,
                 'Title' => $book->title,
                 'AuthorId' => $book->author_id,
+                'AuthorName' => $book->author->name,
                 'Genre' => $book->genre,
                 'PublishedDate' => $book->published_date
             ];
         } else {
-            return response()->json(['message' => 'Author not found'], 404);
+            return response()->json(['message' => 'Book not found'], 404);
         }
     }
+
     //Notes:
     //unique:table name,column,ignore => books,title, . $request->id
     //.Rule::unique('books')->ignore($request->id)
     public function store(Request $request){
+        //$parseDate = Carbon::parse($request->published_date);
+        //$formattedDate = $parseDate->format('Y-m-d');
         $bookRequest = $request->validate([
-            'title' => 'required | min:1 | max:20',
+            'title' => 'required | min:1 | max:99',
             'author_id' => 'required | exists:authors,id',
             'genre' => 'required',
-            'published_date' => 'required | date',
+            'published_date' => 'required | date:Y-m-d',
         ],[
             'author_id.exists'=>'ga ada anjing author nya'
         ]);
