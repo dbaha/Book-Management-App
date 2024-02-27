@@ -30,10 +30,10 @@
             <tbody>
                 <tr v-for="(book,index) in books" :key="book.id">
                 <th scope="row">{{index + 1}}</th>
-                <td>{{book.Title}}</td>
-                <td>{{book.AuthorName }}</td>
-                <td>{{book.Genre }}</td>
-                <td>{{book.PublishedDate }}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author_name }}</td>
+                <td>{{book.genre }}</td>
+                <td>{{book.published_date }}</td>
                 <td>
                     <div class="row">
                     <RouterLink :to="{name: 'BookEdit', params:{id: book.id}}" class="btn btn-primary col mx-2 ">編集</RouterLink>

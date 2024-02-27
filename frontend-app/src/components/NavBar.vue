@@ -7,10 +7,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <RouterLink to="/" class="nav-link">Authors</RouterLink>
+                                <RouterLink :to="{name: 'AuthorIndex'}" class="nav-link">Authors</RouterLink>
                             </li>
                             <li class="nav-item">
-                                <RouterLink to="/" class="nav-link">Books</RouterLink>
+                                <RouterLink :to="{name:'BookIndex'}" class="nav-link">Books</RouterLink>
                             </li>
                         </ul>
                     </div>

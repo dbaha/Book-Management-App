@@ -34,7 +34,7 @@ export default function dataBooks(){
     }
     const updateBook = async(id)=>{
         try{
-            await axios.put("books/"+id,author.value);
+            await axios.put("books/"+id,book.value);
             await router.push({name:"BookIndex"});
         }catch(error){
             if(error.response.status === 422){
@@ -48,7 +48,7 @@ export default function dataBooks(){
             return;
         }
         await axios.delete("books/"+id);
-        await getAuthors();
+        await getBooks();
     };
 
     return{

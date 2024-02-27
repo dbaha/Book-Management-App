@@ -18,11 +18,11 @@ class BookController extends Controller
             'data' => $book->map(function ($book) {
                 return [
                     'id' => $book->id,
-                    'Title' => $book->title,
-                    'AuthorId' => $book->author_id,
-                    'AuthorName'=> $book->author->name,
-                    'Genre' => $book->genre,
-                    'PublishedDate' => $book->published_date
+                    'title' => $book->title,
+                    'author_id' => $book->author_id,
+                    'author_name'=> $book->author->name,
+                    'genre' => $book->genre,
+                    'published_date' => $book->published_date
                 ];
             }),
         ]);
@@ -35,11 +35,11 @@ class BookController extends Controller
         if ($book) {
             return [
                 'id' => $book->id,
-                'Title' => $book->title,
-                'AuthorId' => $book->author_id,
-                'AuthorName' => $book->author->name,
-                'Genre' => $book->genre,
-                'PublishedDate' => $book->published_date
+                'title' => $book->title,
+                'author_id' => $book->author_id,
+                'author_name' => $book->author->name,
+                'genre' => $book->genre,
+                'published_date' => $book->published_date
             ];
         } else {
             return response()->json(['message' => 'Book not found'], 404);
