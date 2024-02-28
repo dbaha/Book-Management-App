@@ -20,7 +20,7 @@ class BookController extends Controller
                     'id' => $book->id,
                     'title' => $book->title,
                     'author_id' => $book->author_id,
-                    'author_name'=> $book->author->name,
+                    'author_name'=> isset($book->author) ? $book->author->name : null,
                     'genre' => $book->genre,
                     'published_date' => $book->published_date
                 ];
@@ -37,7 +37,7 @@ class BookController extends Controller
                 'id' => $book->id,
                 'title' => $book->title,
                 'author_id' => $book->author_id,
-                'author_name' => $book->author->name,
+                'author_name' => isset($book->author) ? $book->author->name : null,
                 'genre' => $book->genre,
                 'published_date' => $book->published_date
             ];
@@ -56,9 +56,15 @@ class BookController extends Controller
             'title' => 'required | min:1 | max:99',
             'author_id' => 'required | exists:authors,id',
             'genre' => 'required',
-            'published_date' => 'required | date:Y-m-d',
+            'published_date' => 'required | date:Y-m-d'
         ],[
-            'author_id.exists'=>'ga ada anjing author nya'
+            'title.required' =>'入力が必要。',
+            'title.min'=>'最低1文字必要。',
+            'title.max' =>'最大20文字。',
+            'author_id.required' =>'入力が必要。',
+            'author_id.exists'=>':input は見つからない。',
+            'genre.required' =>'入力が必要。',
+            'published_date.required' =>'入力が必要。'
         ]);
         Book::create([
             'title' => $bookRequest['title'],
@@ -83,6 +89,14 @@ class BookController extends Controller
             'author_id' => 'required|exists:authors,id',
             'genre' => '', 
             'published_date' => 'required|date',
+        ],[
+            'title.required' =>'入力が必要。',
+            'title.min'=>'最低1文字必要。',
+            'title.max' =>'最大20文字。',
+            'author_id.required' =>'入力が必要。',
+            'author_id.exists'=>':input は見つからない。',
+            'genre.required' =>'入力が必要。',
+            'published_date.required' =>'入力が必要。'
         ]);
 
         $book->update([

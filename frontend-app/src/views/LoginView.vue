@@ -2,7 +2,9 @@
     <div class="form-body">
       <form @submit.prevent="handleSubmit">
         <div class="form-outline mb-4 text-center">
-          <span>管理者ロページ</span>
+          <span class="display-6">
+            書籍管理ロページ
+          </span>
         </div>
         <div class="form-outline mb-4">
           <input type="email" v-model="email" id="formEmail" class="form-control" placeholder="メールアドレス@example.com" required />
@@ -20,7 +22,7 @@
   <style>
   .form-body {
     width: 100%;
-    max-width: 330px;
+    max-width: 350px;
     padding: 15px;
     margin: 0 auto;
     position: fixed;

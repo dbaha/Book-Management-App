@@ -15,14 +15,14 @@
     <div class="container-md">
         <div class="position-relative">
             <div class="position-absolute top-0 end-0">
-                <RouterLink :to="{name: 'AuthorCreate'}" class="btn btn-success">New Author</RouterLink>
+                <RouterLink :to="{name: 'AuthorCreate'}" class="btn btn-success">登録</RouterLink>
             </div>
             <table class="table">
             <thead>
                 <tr>
                 <th scope="col">No</th>
-                <th scope="col">Name</th>
-                <th scope="col">Bio</th>
+                <th scope="col">著作者</th>
+                <th scope="col">バイオグラフィー</th>
                 <th scope="col"></th>
                 </tr>
             </thead>

@@ -22,28 +22,28 @@
     <div class="container-sm middle-top">
         <form @submit.prevent="updateBook($route.params.id)">
             <div class="mb-3">
-                <label for="title" class="form-label">Book Title</label>
+                <label for="title" class="form-label">書名</label>
                 <input type="text" class="form-control" id="title" v-model="book.title">
             </div>
             <div v-if="errors.title" class="mb-3"><a class="text-danger">{{ errors.title[0] }}</a></div>
             <div class="mb-3">
-                <label for="authorname" class="form-label">Author Name</label>
+                <label for="authorname" class="form-label">著作者</label>
                 <select class="form-select" aria-label="authorname" v-model="book.author_id">
                     <option v-for="(author) in authors" :key="author.id" :value="author.id">{{ author.AuthorName }}</option>
                 </select> 
             </div>
             <div v-if="errors.author_id" class="mb-3"><a class="text-danger">{{ errors.author_id[0] }}</a></div>
             <div class="mb-3">
-                <label for="genre" class="form-label">Genre</label>
+                <label for="genre" class="form-label">ジャンル</label>
                 <input type="text" class="form-control" id="bio" v-model="book.genre">
             </div>
             <div v-if="errors.genre" class="mb-3"><a class="text-danger">{{ errors.genre[0] }}</a></div>
             <div class="mb-3">
-                <label for="published" class="form-label">Published date</label>
+                <label for="published" class="form-label">発行日</label>
                 <input type="date" id="datepicker" class="form-control" v-model="book.published_date" />
             </div>
             <div v-if="errors.published_date" class="mb-3"><a class="text-danger">{{ errors.published_date[0] }}</a></div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">登録</button>
         </form>
     </div>
 </template>

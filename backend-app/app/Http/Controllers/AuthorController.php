@@ -44,9 +44,12 @@ class AuthorController extends Controller
                 'name' => 'required | min:1 | max:20 |' .Rule::unique('authors')->ignore($request->id),
                 'bio' => 'required | min:1 '
             ],[
-                'name.unique' => 'The name :input is already registered.',
-                'name.required'=>'入力が必要です。',
-                'bio.required'=>'入力が必要です。'
+                'name.unique' => ':input はすでに登録されてる。',
+                'name.required'=>'入力が必要。',
+                'name.min'=>'最低1文字必要。',
+                'name.max' =>'最大20文字。',
+                'bio.required'=>'入力が必要。',
+                'bio.min'=>'最低1文字必要。'
             ]);
             Author::create([
                 'name' => $authorRequest['name'],
@@ -69,9 +72,12 @@ class AuthorController extends Controller
             'name' => 'required | min:1 | max:20 |' .Rule::unique('authors')->ignore($id),
             'bio' => 'required | min:1 '
         ],[
-            'name.unique' => 'The name :input is already registered.',
-            'name.required'=>'入力が必要です。',
-            'bio.required'=>'入力が必要です。'
+            'name.unique' => ':input はすでに登録されてる。',
+            'name.required'=>'入力が必要。',
+            'name.min'=>'最低1文字必要。',
+            'name.max' =>'最大20文字。',
+            'bio.required'=>'入力が必要。',
+            'bio.min'=>'最低1文字必要。'
         ]);
         
         Author::where('id', $id)->update([

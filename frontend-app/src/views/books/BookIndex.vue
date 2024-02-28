@@ -14,17 +14,17 @@
     <div class="container-md">
         <div class="position-relative">
             <div class="position-absolute top-0 end-0">
-                <RouterLink :to="{name: 'BookCreate'}" class="btn btn-success">New Book</RouterLink>
+                <RouterLink :to="{name: 'BookCreate'}" class="btn btn-success">登録</RouterLink>
             </div>
             <table class="table">
             <thead>
                 <tr>
-                <th scope="col">No</th>
-                <th scope="col">Title Book</th>
-                <th scope="col">Author Name</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Published date</th>
-                <th scope="col"></th>
+                    <th scope="col">No</th>
+                    <th scope="col">書名</th>
+                    <th scope="col">著作者</th>
+                    <th scope="col">ジャンル</th>
+                    <th scope="col">発行日</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>

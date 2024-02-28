@@ -14,7 +14,7 @@ const {authors,getAuthors}=dataAuthors();
 
 <template>
     <NavBar />
-    <h3 class="display-3 text-center">This is home page for books </h3>
+    <h3 class="display-3 text-center">書籍管理システム </h3>
     <div class="container">
         <div class="row">
             <div class="col-md-6 books-container">
@@ -22,10 +22,10 @@ const {authors,getAuthors}=dataAuthors();
                     <thead>
                         <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Title Book</th>
-                        <th scope="col">Author Name</th>
-                        <th scope="col">Genre</th>
-                        <th scope="col">Published date</th>
+                        <th scope="col">書名</th>
+                        <th scope="col">著作者</th>
+                        <th scope="col">ジャンル</th>
+                        <th scope="col">発行日</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,8 +44,8 @@ const {authors,getAuthors}=dataAuthors();
                     <thead>
                         <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Bio</th>
+                        <th scope="col">著作者</th>
+                        <th scope="col">バイオグラフィー</th>
                         </tr>
                     </thead>
                     <tbody>
