@@ -17,7 +17,7 @@
                     <div class="d-flex">
                         <ul class="navbar-nav">
                             <li class="navbar-item">
-                                <a class="nav-link">logout</a>
+                                <RouterLink :to="{name:'login'}" class="nav-link" @click.prevent="logout">logout</RouterLink>
                             </li>
                         </ul>
                     </div>    
@@ -28,4 +28,32 @@
 </template>
 <script>
 import { RouterLink} from 'vue-router'
+import axios from 'axios';
+
+export default{
+    methods:{
+        async logout(){
+            const token=localStorage.getItem('token');
+            console.log(token);
+            try{
+                const response = await axios.post('http://127.0.0.1:8000/api/logout',null,{
+                    headers: {
+                    Authorization: `Bearer ${token}`
+                    }
+                });
+                if (response.status === 200 ) {
+                    localStorage.removeItem('token');
+                    //this.$router.push({ name: 'login' });
+                } else {
+                    //failed connection
+                }  
+                console.log('token after logout:' +localStorage.getItem('token'));
+            }catch(error){
+                console.log(error.response);
+            }
+
+        }
+    }
+};
+
 </script>

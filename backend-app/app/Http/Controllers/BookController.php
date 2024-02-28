@@ -79,7 +79,7 @@ class BookController extends Controller
         }
 
         $bookRequest = $request->validate([
-            'title' => 'required|min:1|max:20|unique:books,title,' . $id,
+            'title' => 'required|min:1|max:99|unique:books,title,' . $id,
             'author_id' => 'required|exists:authors,id',
             'genre' => '', 
             'published_date' => 'required|date',

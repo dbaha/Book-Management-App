@@ -9,21 +9,34 @@ export default function dataBooks(){
     const book = ref([]);
     const errors = ref({});
     const router = useRouter();
+    const token= localStorage.getItem('token');
 
     const getBooks = async ()=>{
-        const response = await axios.get("books");
+        const response = await axios.get("books",{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
         books.value= response.data.data;
     };
 
 
     const getBook = async(id)=>{
-        const response = await axios.get('books/'+id);
+        const response = await axios.get('books/'+id,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
         book.value=response.data;
     }
 
     const storeBook = async (data)=>{
         try{
-            await axios.post("books",data);
+            await axios.post("books",data,{
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              });
             await router.push({name:"BookIndex"});
         }catch(error){
             console.log(error);
@@ -34,7 +47,11 @@ export default function dataBooks(){
     }
     const updateBook = async(id)=>{
         try{
-            await axios.put("books/"+id,book.value);
+            await axios.put("books/"+id,book.value,{
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              });
             await router.push({name:"BookIndex"});
         }catch(error){
             if(error.response.status === 422){
@@ -47,7 +64,11 @@ export default function dataBooks(){
         if(!window.confirm("削除しますか？")){
             return;
         }
-        await axios.delete("books/"+id);
+        await axios.delete("books/"+id,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
         await getBooks();
     };
 

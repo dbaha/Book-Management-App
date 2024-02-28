@@ -57,28 +57,25 @@ class UserAuthController extends Controller
             'error' => 'Unauthenticated',
         ], 401);
     }   
-    public function tokenExpirationTimeLeft(Request $request)
+    public function isTokenAlive(Request $request)
     {
-        $user = $request->user(); // Get the authenticated user
 
-        if ($user) {
-            $latestToken = $user->tokens()->latest()->first();
-            if($latestToken){
-                $tokenExpiresAt = $latestToken->expires_at;
-                $now = Carbon::now();
+        $latestToken = $request->user()->tokens()->latest()->first();
+        if($latestToken){
+            $tokenExpiresAt = $latestToken->expires_at;
+            $now = Carbon::now();
 
-                $minutesLeft = $now->diffInMinutes($tokenExpiresAt);
+            $minutesLeft = $now->diffInMinutes($tokenExpiresAt);
 
-                return response()->json([
-                    'minutes_left' => $minutesLeft,
-                ]);
-            } else {
+            return response()->json([
+                'message' => 'true',
+            ]);
+        } else {
             return response()->json([
                 'error' => 'No tokens found for the user',
             ], 400);
-            }
         }
-
+        
         return response()->json([
             'error' => 'Unauthenticated',
         ], 401);

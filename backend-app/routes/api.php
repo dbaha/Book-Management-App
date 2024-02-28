@@ -22,7 +22,7 @@ Route::post('login',[UserAuthController::class,'login']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    //Route::get('/token-left', [UserAuthController::class, 'tokenExpirationTimeLeft']);
+    Route::get('token', [UserAuthController::class, 'isTokenAlive']);
     Route::post('logout', [UserAuthController::class, 'logout']);
     Route::apiResource('authors',AuthorController::class);
     Route::apiResource('books',BookController::class);

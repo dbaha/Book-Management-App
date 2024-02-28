@@ -9,20 +9,33 @@ export default function dataAuthors(){
     const author = ref([]);
     const errors = ref({});
     const router = useRouter();
+    const token=localStorage.getItem('token');
 
     const getAuthors= async ()=>{
-        const response = await axios.get("authors");
+        const response = await axios.get("authors",{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
         authors.value=response.data.data;
     };
 
     const getAuthor = async(id)=>{
-        const response = await axios.get("authors/" + id);
+        const response = await axios.get("authors/" + id,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
         author.value=response.data;
     };
 
     const storeAuthor = async(data)=>{
         try{
-            await axios.post("authors",data);
+            await axios.post("authors",data,{
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              });
             //push data pake name, lempar ke display semua data 
             await router.push({name:"AuthorIndex"});
         }catch(error){
@@ -34,7 +47,11 @@ export default function dataAuthors(){
 
     const updateAuthor = async(id)=>{
         try{
-            await axios.put("authors/"+id,author.value);
+            await axios.put("authors/"+id,author.value,{
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              });
             //push data pake name, lempar ke display semua data 
             await router.push({name:"AuthorIndex"});
         }catch(error){
@@ -48,7 +65,11 @@ export default function dataAuthors(){
         if(!window.confirm("削除しますか？")){
             return;
         }
-        await axios.delete("authors/"+id);
+        await axios.delete("authors/"+id,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
         await getAuthors();
     };
 

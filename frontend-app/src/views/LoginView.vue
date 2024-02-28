@@ -32,7 +32,7 @@
   
   <script>
   import axios from 'axios';
-  
+
   export default {
     name: 'LoginForm',
     data() {
@@ -63,15 +63,11 @@
           }
   
           const { access_token } = response.data;
-  
-          // Store the access token securely
+        
           localStorage.setItem('token', access_token);
-          // Redirect or navigate to the protected area
           this.success = 'Login successful!';
           console.log('Login successful! Access token:', access_token);
-          // You can replace this with your desired navigation logic
-          // (e.g., using a router or state management library)
-  
+          this.$router.push({ name: 'home' });
         } catch (error) {
           this.error = 'Login Failed';
           console.error(error);
