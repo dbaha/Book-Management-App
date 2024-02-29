@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'bio' => 'Master of war strategy',
         ]);
 
-        \App\Models\Author::factory()->create([
+        \App\Models\Book::factory()->create([
             'title'=>'The art of war',
             'author_id'=>'1',
             'genre'=>'Strategy',
