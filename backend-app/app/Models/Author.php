@@ -14,6 +14,6 @@ class Author extends Model
         'bio',
     ];
     public function books() {
-        return $this->hasMany(Book::class); // One author can have many books
+        return $this->hasMany(Book::class); 
     }
 }

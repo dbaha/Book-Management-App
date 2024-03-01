@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'genre'=>'Strategy',
             'published_date'=>'1980-05-12'
         ]);
-        
+        \App\Models\Author::factory(5)->create();
+        \App\Models\Book::factory(10)->create();
     }
 }
