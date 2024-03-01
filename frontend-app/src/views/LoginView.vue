@@ -3,7 +3,7 @@
       <form @submit.prevent="handleSubmit">
         <div class="form-outline mb-4 text-center">
           <span class="display-6">
-            書籍管理ロページ
+            書籍管理ページ
           </span>
         </div>
         <div class="form-outline mb-4">
